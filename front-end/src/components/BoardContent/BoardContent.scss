@@ -1,19 +1,24 @@
 @import 'components/_setting.scss'; 
 $common-element-bg-color: rgba(255,255,255,0.5);
 .board-contents {
-    display: flex;
-    overflow-x: auto;
-    margin: 0  $gap 0 $gap;
-    padding-bottom: $gap;
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-    }
-    &::-webkit-scrollbar:horizontal {
-      height: $gap;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: $common-element-bg-color;
-      border-radius: $gap ;
-    }
-
+  // display: flex;
+  // margin: 0  $gap 0 $gap;
+  padding-bottom: $gap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: $gap;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $common-element-bg-color;
+    border-radius: $gap ;
+  }
+  .column-drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    margin: 5px 45px 5px 5px;
+  }
 }
