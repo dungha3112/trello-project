@@ -2,10 +2,13 @@
 $common-element-bg-color: rgba(255,255,255,0.5);
 .board-contents {
   display: flex;
-  // margin: 0  $gap 0 $gap;
   padding-bottom: $gap;
   overflow-x: auto;
   overflow-y: hidden;
+  &::after {
+    content: '';
+    flex: 0 0 $gap;
+  }
   &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
@@ -23,9 +26,9 @@ $common-element-bg-color: rgba(255,255,255,0.5);
   }
 
   .add-new-column {
-    width: 240px;
-    height: 36px;
-    line-height: 36px;
+    width: 250px;
+    max-width: 250px;
+    line-height: 30px;
     padding: 4px 0 4px 16px;
     margin-left: $gap;
     cursor: pointer;
@@ -36,6 +39,26 @@ $common-element-bg-color: rgba(255,255,255,0.5);
     background-color: hsla(0, 0%, 100%, 0.24);
     &:hover {
       background-color: hsla(0, 0%, 100%, 0.36);
+    }
+  }
+  .enter-new-column {
+    width: 250px;
+    max-width: 250px;
+    margin-left: $gap;
+    line-height: 30px;
+    padding: 4px 12px;
+    background-color:$column-bg-color;
+    border-radius: $column-border-radius;
+    input.input-enter-new-column {
+      margin: 5px 0;
+    }
+    span.cancel-new-column {
+      margin-left: $gap;
+      cursor: pointer;
+      i {
+        font-size:18px;
+        color: darken($alert-danger-color, 10);
+      }
     }
   }
 }
