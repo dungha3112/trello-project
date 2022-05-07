@@ -2,18 +2,21 @@
 $common-element-bg-color: rgba(255,255,255,0.5);
 .board-contents {
   display: flex;
-  padding-bottom: $gap;
+  padding-bottom: 20px;
   overflow-x: auto;
   overflow-y: hidden;
+  
   &::after {
     content: '';
-    flex: 0 0 $gap;
+    flex: 0 0 10px;
+    padding-top: 4px;
   }
   &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
   &::-webkit-scrollbar:horizontal {
-    height: $gap;
+    height: 15px;
+    margin-top:10px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $common-element-bg-color;
@@ -28,7 +31,7 @@ $common-element-bg-color: rgba(255,255,255,0.5);
   .add-new-column {
     width: 250px;
     max-width: 250px;
-    line-height: 30px;
+    line-height: 20px;
     padding: 4px 0 4px 16px;
     margin-left: $gap;
     cursor: pointer;
@@ -45,23 +48,12 @@ $common-element-bg-color: rgba(255,255,255,0.5);
     width: 250px;
     max-width: 250px;
     margin-left: $gap;
-    line-height: 30px;
-    padding: 4px 12px;
+    // line-height: 36px;
+    // padding: 4px 4px;
     background-color:$column-bg-color;
     border-radius: $column-border-radius;
     input.input-enter-new-column {
       margin: 5px 0;
-      &:focus {
-        border-color: $input-border-color;
-      }
-    }
-    span.cancel-new-column {
-      margin-left: $gap;
-      cursor: pointer;
-      i {
-        font-size:18px;
-        color: darken($alert-danger-color, 10);
-      }
     }
   }
 }
