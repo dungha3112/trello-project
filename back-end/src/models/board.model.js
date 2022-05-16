@@ -20,7 +20,7 @@ const createNew = async (data) => {
     const result = await getDB().collection(boardCollectionName).insertOne(value)
     return result.ops[0]
   } catch (err) {
-    console.error('===> Error board Model ' +err)
+    throw new Error(err)
   }
 }
 
