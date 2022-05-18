@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { ObjectId } from 'mongodb'
+import { ObjectID } from 'mongodb'
 import { getDB } from '@/configs/mongodb'
 
 const columnCollectionName = 'columns'
@@ -18,9 +18,31 @@ const validateSchema = async (data) => {
 
 const createNew = async (data) => {
   try {
-    const value = await validateSchema(data)
-    const result = await getDB().collection(columnCollectionName).insertOne(value)
+    const validatedValue = await validateSchema(data)
+    const insertValue = {
+      ...validatedValue,
+      boardId: ObjectID(validatedValue.boardId)
+    }
+    const result = await getDB().collection(columnCollectionName).insertOne(insertValue)
+
     return result.ops[0]
+  } catch (err) {
+    throw new Error(err)
+  }
+}
+
+/**
+ *  @param {string} columnId
+ *  @param {string} cardId
+*/
+const pushCardOrder = async (columnId, cardId) => {
+  try {
+    const result = await getDB().collection(columnCollectionName).findOneAndUpdate(
+      { _id: ObjectID(columnId) },
+      { $push: { cardOrder: cardId } },
+      { returnOriginal: false }
+    )
+    return result.value
   } catch (err) {
     throw new Error(err)
   }
@@ -28,17 +50,16 @@ const createNew = async (data) => {
 
 const update = async (id, data) => {
   try {
-
     const result = await getDB().collection(columnCollectionName).findOneAndUpdate(
-      { _id: ObjectId(id) },
+      { _id: ObjectID(id) },
       { $set: data },
       { returnOriginal: false }
     )
-    console.log(result)
+
     return result.value
   } catch (err) {
     throw new Error(err)
   }
 }
 
-export const ColumnModel = { createNew, update }
+export const ColumnModel = { columnCollectionName, createNew, pushCardOrder, update }
