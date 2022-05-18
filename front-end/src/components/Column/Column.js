@@ -13,7 +13,7 @@ import { saveContentAfterPressEnter, seclectAllInlineText } from 'utilities/cont
 
 const Column = (props) => {
   const { column, onCardDrop, onUpdateColumn } = props
-  const cards = mapOrder(column.cards, column.cardOrder, 'id')
+  const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const [columnTitle, setColumnTitle] = useState('')
@@ -86,15 +86,15 @@ const Column = (props) => {
         <div className='column-title'>
           {/* {column.title} */}
           <Form.Control
-              size="sm" type="text"
-              className="trello-content-editable"
-              value={columnTitle}
-              onKeyDown={saveContentAfterPressEnter}
-              onClick={seclectAllInlineText}
-              onChange={handleColumnTitleChange}
-              onBlur={handleColumnTitleBlur}
-              onMouseDown={e => e.preventDefault()}
-              spellCheck="false"
+            size="sm" type="text"
+            className="trello-content-editable"
+            value={columnTitle}
+            onKeyDown={saveContentAfterPressEnter}
+            onClick={seclectAllInlineText}
+            onChange={handleColumnTitleChange}
+            onBlur={handleColumnTitleBlur}
+            onMouseDown={e => e.preventDefault()}
+            spellCheck="false"
           />
         </div>
         <div className='column-dropdown-actions'>
@@ -167,10 +167,10 @@ const Column = (props) => {
       </footer>
 
       <ConfirmModal
-      title="Remove Column ?"
-      content={`Are you sure want to remove <strong>${column.title}</strong>? <br/> All related cards will also be removed!`}
-      show={showConfirmModal}
-      onAction={onConfirmModalAction}/>
+        title="Remove Column ?"
+        content={`Are you sure want to remove <strong>${column.title}</strong>? <br/> All related cards will also be removed!`}
+        show={showConfirmModal}
+        onAction={onConfirmModalAction}/>
     </div>
   )
 }
